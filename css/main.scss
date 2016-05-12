@@ -1,0 +1,100 @@
+---
+# Only the main Sass file needs front matter (the dashes are enough)
+---
+
+/* 
+This is project follows the Inverted Triangle CSS (ITCSS)
+organizational structure created by Harry Roberts.
+
+The organization is from low to high specifity
+and aims to create more scalable, modular, and structured css
+
+The inverted triangle:
+               ______________
+     Settings  \____________/   Least Specific
+        Tools   \__________/         
+      Generic    \________/          |
+     Elements     \______/           | 
+      Objects      \____/            |
+   Components       \__/             
+       Trumps        \/         Most Specific
+
+Settings ---- Global variables, config switches. 
+Tools ------- Default mixins and functions.
+Generic ----- Ground-zero styles (Normalize.css, resets, box-sizing).
+Elements ---- Unclassed HTML elements (type selectors).
+Objects ----- Cosmetic-free design patterns.
+Components -- Designed components, chunks of UI.
+Trumps ------ Helpers and overrides.
+*/
+
+@charset "UTF-8";
+
+/*
+SETTINGS 
+store all variables, config switches, etc.
+Split up into logical sections, the smaller and simpler the better.
+================================================
+*/
+
+@import "settings.global";
+
+@import 
+  "settings.colors",
+  "settings.typography",
+  "settings.grid",
+  "settings.media-queries";
+
+/*
+TOOLS
+================================================
+store all programic Sass functionality.
+If your tooling is simplistic enough, you can do something like:
+  tools.mixins
+If your tooling is more complex you can split it up like:
+  tools.grid
+  tools.typography
+  etc.
+*/
+
+/*
+GENERIC
+================================================
+rules are project-agnostic.
+These can be copied from any project to the next
+*/
+
+@import "generic.normalize";
+
+/*
+ELEMENTS
+================================================
+rules for classless HTML tags.
+There can exist no classes at this layer, only further into our triangle.
+*/
+
+@import 
+  "elements.img",
+  "elements.links",
+  "elements.page",
+  "elements.typography";
+
+/*
+OBJECTS
+================================================
+"formless", in other words invisible to the user, no cosmetics
+  Eg. wrappers, grid systems, etc.
+This is the first layer of classes and should be agnostically named
+  Eg. list-inline, ui-list, etc.
+*/
+
+@import
+  "objects.grid",
+  "objects.wrappers";
+
+/*
+COMPONENTS
+================================================
+the stuff of UI. Eg. buttons, special titles, etc.
+These get much more explicitly named: eg. products-list, etc.
+*/
